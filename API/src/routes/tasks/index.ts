@@ -1,12 +1,12 @@
+import { upload } from "../../config/multer";
 import { createTask } from "./create.route";
 import { fetchTasks } from "./fetch.route";
-
 // routes/tasks/index.js
-const express = require("express");
+import express from "express";
 
 const router = express.Router();
 
 router.get("/", fetchTasks);
-router.post("/", createTask);
+router.post("/", upload.array("attachments", 5), createTask);
 
 export default router;
